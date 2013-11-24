@@ -1,0 +1,6 @@
+* Cutest Kitty Features
+** On Hover, kitty purrs and appears to be 'pet'
+** Feed the kitty a fish
+** After no interaction for 30sec, kitty will meow for attention
+** After too many clicks kitty will trigger the 'irritated' state and be tempermental
+** Change colors of cute kitty

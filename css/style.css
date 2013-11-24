@@ -1,0 +1,23 @@
+/* Fonts */
+/* ========================*/
+@font-face {
+  font-family: 'Vanilla';
+  src: url('/media/fonts/Vanilla.ttf');
+}
+
+
+body {
+  font-family: helvetica;
+}
+
+/* Global */
+/* ========================*/
+h1 {
+  font-family: Vanilla;
+}
+
+/* Kitty */
+/* ========================*/
+
+/* Footer */
+/* ========================*/

@@ -41,14 +41,36 @@ $(document).ready(function() {
         changeFurColor();
     });
 
-    // Feed the kitty
-    var feedKitty = function () {
-        if ( mood.hunger + 10 <= 100 ) {
-            mood.hunger = mood.hunger + 10;
+    // Update the kitty's expression
+    var updateKitty = function (tool) {
+        if ( tool == "fish" ) {
+            $kitty.attr('src', '/media/images/kitty-nomming.png');
+            updateKittyMood('hunger');
         }
-        $hunger.css('width', mood.hunger + '%');
+
+        else if ( tool == "yarn" ) {
+            $kitty.attr('src', '/media/images/kitty-nomming.png');
+            updateKittyMood('happiness');
+        }
+
+        else if ( tool == "catnip" ) {
+            $kitty.attr('src', '/media/images/kitty-nomming.png');
+            updateKittyMood('chill');
+        }
+
     }
-    
+
+    // Update the kitty's mood
+    var updateKittyMood = function ( emotion ) {
+        if ( mood[emotion] + 10 <= 100 ) {
+            mood[emotion] = mood[emotion] + 10;
+        }
+        console.log(mood[emotion]);
+        $('div[data-mood="' + emotion + '"]').css('width', mood[emotion] + '%');
+    }
+
+
+    // Feed the kitty    
     $fish.draggable({ 
         revert: true, 
         revertDuration: 20,
@@ -57,17 +79,23 @@ $(document).ready(function() {
         }
     });
 
-    $kitty.droppable({
-        drop: function () {
-            $kitty.attr('src', '/media/images/kitty-nomming.png');
-            feedKitty();
-        }
+    // Toss kitty yarn
+    $yarn.draggable({
+        revert: true, 
+        revertDuration: 20
     });
 
-    // Toss kitty yarn
-    $yarn.draggable();
-
     // get kitty stoned
-    $catnip.draggable();
+    $catnip.draggable({
+        revert: true, 
+        revertDuration: 20
+    });
+
+    $kitty.droppable({
+        drop: function (ev, obj) {
+            var tool = $(obj.draggable[0]).data('tool');
+            updateKitty(tool);
+        }
+    });
 
 });

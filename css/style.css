@@ -42,7 +42,6 @@ h1, h2 {
 /* Kitty */
 /* ========================*/
 .kitty-container {
-  background: #97D58C;
   height: 200px;
   width: 200px;
   margin: 50px auto;
@@ -72,6 +71,7 @@ h1, h2 {
 }
 
 .mood-meter {
+  padding: 0px 20px;
   margin-bottom: 15px;
   height: 20px;
 }
@@ -84,4 +84,15 @@ h1, h2 {
   float: right;
   font-family: Vanilla;
   letter-spacing: 10px;
+  position: relative;
+  width: 155px;
+}
+
+.mood-meter .mood-level {
+  background: rgba(200, 0, 0, 0.8);
+  height: 12px;
+  position: absolute;
+  top: 2px;
+  left: 10px;
+  width: 100%;
 }

@@ -3,14 +3,9 @@ $(document).ready(function() {
     var $kitty = $('.kitty');
     var $kittyContainer = $('.kitty-container');
 
-    window.$fish = $('img[data-tool="fish"]');
-    window.fishToolbox = $fish.position();
-
+    var $fish = $('img[data-tool="fish"]');
     var $yarn = $('img[data-tool="yarn"]');
-    var yarnToolbox = $yarn.position();
-
     var $catnip = $('img[data-tool="catnip"]');
-    var catnipToolbox = $catnip.position();
 
     var $happiness = $('div[data-mood="happiness"]');
     var $hunger = $('div[data-mood="hunger"]');
@@ -49,20 +44,21 @@ $(document).ready(function() {
     // Update the kitty's expression
     var updateKitty = function (tool) {
         if ( tool == "fish" ) {
-            $kitty.attr('src', '/media/images/kitty-nomming.png');
+            $kitty.attr('src', 'media/images/kitty-nomming.png');
             updateKittyMood('hunger');
         }
 
         else if ( tool == "yarn" ) {
-            $kitty.attr('src', '/media/images/kitty-nomming.png');
+            $kitty.attr('src', 'media/images/kitty-nomming.png');
             updateKittyMood('happiness');
         }
 
         else if ( tool == "catnip" ) {
-            $kitty.attr('src', '/media/images/kitty-nomming.png');
+            $kitty.attr('src', 'media/images/kitty-nomming.png');
             updateKittyMood('chill');
         }
-        resetKitty( tool );
+        // Why won't this work?
+        setTimeout( resetKitty(tool), 5000 );
     }
 
     // Update the kitty's mood
@@ -75,7 +71,18 @@ $(document).ready(function() {
 
     // Reset the kitty and tools
     var resetKitty = function( tool ) {
-        // $kitty.attr('src', '/media/images/kitty.png');
+        switch ( tool ) {
+            case "fish":
+              console.log('fish');
+              break;
+            case "yarn":
+              console.log('yarn');
+              break;
+            case "catnip":
+              console.log('catnip');
+              break;
+        }
+        $kitty.attr('src', 'media/images/kitty.png');
     }
 
     // Feed the kitty    
@@ -83,7 +90,7 @@ $(document).ready(function() {
         revert: true, 
         revertDuration: 20,
         drag: function () {
-            $kitty.attr('src', '/media/images/kitty-hungry.png');            
+            $kitty.attr('src', 'media/images/kitty-hungry.png');            
         }
     });
 

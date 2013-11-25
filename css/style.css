@@ -11,8 +11,9 @@ body {
 
 /* Global */
 /* ========================*/
-h1 {
+h1, h2 {
   font-family: Vanilla;
+  margin: 0px;
 }
 
 .center {
@@ -32,7 +33,6 @@ h1 {
 /* ========================*/
 #content-wrap {
   max-width: 600px;
-  
 }
 
 /* Kitty */
@@ -46,7 +46,19 @@ h1 {
 
 /* Tool Box
 /* ========================*/
+.tool-box {
+  margin-top: 20px;
+}
+
 .tool-item {
   width: 30%;
   display: inline-block;
+}
+
+.tool-item-label {
+  font-size: 15px;
+}
+
+.tool-item img:hover {
+  -webkit-transform: rotate(25deg);
 }

@@ -35,19 +35,23 @@ h1, h2 {
   max-width: 600px;
 }
 
+.item-label {
+  font-size: 15px;
+}
+
 /* Kitty */
 /* ========================*/
 .kitty-container {
   background: #97D58C;
   height: 200px;
   width: 200px;
-  margin: 0 auto;
+  margin: 50px auto;
 }
 
 /* Tool Box
 /* ========================*/
 .tool-box {
-  margin-top: 20px;
+  margin: 20px 0 50px 0;
 }
 
 .tool-item {
@@ -55,10 +59,29 @@ h1, h2 {
   display: inline-block;
 }
 
-.tool-item-label {
-  font-size: 15px;
-}
-
 .tool-item img:hover {
   -webkit-transform: rotate(25deg);
+}
+
+/* Mood Meters
+/* ========================*/
+.mood-meters {
+  text-align: left;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.mood-meter {
+  margin-bottom: 15px;
+  height: 20px;
+}
+
+.mood-meter .item-label {
+  float: left;
+}
+
+.mood-meter .mood-bar {
+  float: right;
+  font-family: Vanilla;
+  letter-spacing: 10px;
 }

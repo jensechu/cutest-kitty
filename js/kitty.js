@@ -3,9 +3,14 @@ $(document).ready(function() {
     var $kitty = $('.kitty');
     var $kittyContainer = $('.kitty-container');
 
-    var $fish = $('img[data-tool="fish"]');
+    window.$fish = $('img[data-tool="fish"]');
+    window.fishToolbox = $fish.position();
+
     var $yarn = $('img[data-tool="yarn"]');
+    var yarnToolbox = $yarn.position();
+
     var $catnip = $('img[data-tool="catnip"]');
+    var catnipToolbox = $catnip.position();
 
     var $happiness = $('div[data-mood="happiness"]');
     var $hunger = $('div[data-mood="hunger"]');
@@ -57,7 +62,7 @@ $(document).ready(function() {
             $kitty.attr('src', '/media/images/kitty-nomming.png');
             updateKittyMood('chill');
         }
-
+        resetKitty( tool );
     }
 
     // Update the kitty's mood
@@ -65,10 +70,13 @@ $(document).ready(function() {
         if ( mood[emotion] + 10 <= 100 ) {
             mood[emotion] = mood[emotion] + 10;
         }
-        console.log(mood[emotion]);
         $('div[data-mood="' + emotion + '"]').css('width', mood[emotion] + '%');
     }
 
+    // Reset the kitty and tools
+    var resetKitty = function( tool ) {
+        // $kitty.attr('src', '/media/images/kitty.png');
+    }
 
     // Feed the kitty    
     $fish.draggable({ 
@@ -79,13 +87,13 @@ $(document).ready(function() {
         }
     });
 
-    // Toss kitty yarn
+    // Toss the kitty yarn
     $yarn.draggable({
         revert: true, 
         revertDuration: 20
     });
 
-    // get kitty stoned
+    // Get the kitty stoned
     $catnip.draggable({
         revert: true, 
         revertDuration: 20

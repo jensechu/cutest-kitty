@@ -89,10 +89,12 @@ h1, h2 {
 }
 
 .mood-meter .mood-level {
+  transition: width 5s;
+  -webkit-transition: width 2s;
   background: rgba(200, 0, 0, 0.8);
   height: 12px;
   position: absolute;
   top: 2px;
   left: 10px;
-  width: 100%;
+  width: 10%;
 }

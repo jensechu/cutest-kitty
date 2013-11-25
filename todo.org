@@ -4,6 +4,7 @@
 ** After no interaction for 30sec, kitty will meow for attention
 ** After too many clicks kitty will trigger the 'irritated' state and be tempermental
 ** Change colors of cute kitty
+** Store moods in local storage
 ** Mood Meters
 *** Happiness
 *** Hunger

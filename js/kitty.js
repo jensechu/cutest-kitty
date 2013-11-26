@@ -33,8 +33,8 @@ $(document).ready(function() {
 
     // Change kitty's fur color
     var changeFurColor = function () {
-        var furColor = furColors[Math.floor(Math.random() * furColors.length)];
-        $kittyContainer.css('background', furColor);
+        var furColor = furColors[Math.floor( Math.random() * furColors.length )];
+        $kittyContainer.css( 'background', furColor );
     };
 
     $kittyContainer.on('click', function () {
@@ -42,47 +42,48 @@ $(document).ready(function() {
     });
 
     // Update the kitty's expression
-    var updateKitty = function (tool) {
+    var updateKitty = function ( tool ) {
         if ( tool == "fish" ) {
-            $kitty.attr('src', 'media/images/kitty-nomming.png');
-            updateKittyMood('hunger');
+            $kitty.attr( 'src', 'media/images/kitty-nomming.png' );
+            updateKittyMood( 'hunger', 10 );
         }
 
         else if ( tool == "yarn" ) {
-            $kitty.attr('src', 'media/images/kitty-nomming.png');
-            updateKittyMood('happiness');
+            $kitty.attr( 'src', 'media/images/kitty-nomming.png' );
+            updateKittyMood( 'happiness', 10 );
         }
 
         else if ( tool == "catnip" ) {
-            $kitty.attr('src', 'media/images/kitty-nomming.png');
-            updateKittyMood('chill');
+            $kitty.attr( 'src', 'media/images/kitty-nomming.png' );
+            updateKittyMood( 'chill', 10 );
         }
 
-        setTimeout( function() { resetKitty(tool) }, 2000);
+        setTimeout( function() { resetKitty( tool ) }, 2000 );
     }
 
-    // Update the kitty's mood
-    var updateKittyMood = function ( emotion ) {
-        if ( mood[emotion] + 10 <= 100 ) {
-            mood[emotion] = mood[emotion] + 10;
+    // Update the kitty's mood meters
+    var updateKittyMood = function ( emotion, quantity ) {
+        if ( mood[emotion] + quantity <= 100 ) {
+            mood[emotion] = mood[emotion] + quantity;
         }
         $('div[data-mood="' + emotion + '"]').css('width', mood[emotion] + '%');
+        localStorage.setItem('mood', JSON.stringify(mood));
     }
 
     // Reset the kitty and tools
     var resetKitty = function( tool ) {
         switch ( tool ) {
             case "fish":
-              console.log('fish');
+              console.log( 'fish' );
               break;
             case "yarn":
-              console.log('yarn');
+              console.log( 'yarn' );
               break;
             case "catnip":
-              console.log('catnip');
+              console.log( 'catnip' );
               break;
         }
-        $kitty.attr('src', 'media/images/kitty.png');
+        $kitty.attr( 'src', 'media/images/kitty.png' );
     }
 
     // Feed the kitty    
@@ -90,7 +91,7 @@ $(document).ready(function() {
         revert: true, 
         revertDuration: 20,
         drag: function () {
-            $kitty.attr('src', 'media/images/kitty-hungry.png');            
+            $kitty.attr( 'src', 'media/images/kitty-hungry.png' );            
         }
     });
 
@@ -107,10 +108,23 @@ $(document).ready(function() {
     });
 
     $kitty.droppable({
-        drop: function (ev, obj) {
-            var tool = $(obj.draggable[0]).data('tool');
-            updateKitty(tool);
+        drop: function ( ev, obj ) {
+            var tool = $( obj.draggable[0] ).data( 'tool' );
+            updateKitty( tool );
         }
     });
+
+    // Grab kitty's mood
+    var storedKittyMood = function () {
+        if ( localStorage.mood ) {
+            storedMood = localStorage.getItem( 'mood' );
+            storedMood = JSON.parse( storedMood );
+            updateKittyMood( 'hunger', ( storedMood.hunger - 10) );
+            updateKittyMood( 'happiness', ( storedMood.happiness - 10) );
+            updateKittyMood( 'chill', ( storedMood.chill - 10 ) );
+        }
+    }
+
+    storedKittyMood();
 
 });

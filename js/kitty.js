@@ -57,8 +57,8 @@ $(document).ready(function() {
             $kitty.attr('src', 'media/images/kitty-nomming.png');
             updateKittyMood('chill');
         }
-        // Why won't this work?
-        setTimeout( resetKitty(tool), 5000 );
+
+        setTimeout( function() { resetKitty(tool) }, 2000);
     }
 
     // Update the kitty's mood

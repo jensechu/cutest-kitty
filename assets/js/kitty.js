@@ -14,10 +14,10 @@ $(document).ready(function() {
     var mood = {
         'happiness': 10,
         'hunger': 10,
-        'chill': 10
+        'chill': 10,
     }
 
-    var furColors = ['#97D58C', 
+    var furColors = ['#97D58C',
                      '#FCF4CF', 
                      '#EF6B05', 
                      '#FBFE74', 
@@ -125,6 +125,18 @@ $(document).ready(function() {
         }
     }
 
-    storedKittyMood();
+    var storedKittyVisit = function () {
+        if ( localStorage.lastVisit ) {
+            lastVisit = Date.parse(localStorage.lastVisit);
+            currentVisit = Date.parse(new Date() );
+            // Kill off kitty if this # is huge.
+            console.log(currentVisit - lastVisit);
+        }
+        else {
+            localStorage.setItem( 'lastVisit', new Date() ); 
+        }
+    }
 
+    storedKittyMood();
+    storedKittyVisit();
 });
